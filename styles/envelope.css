@@ -29,28 +29,66 @@
       url('../images/optimized/envelope-1600.webp');
   }
 }
-#envelope .env-to::before, #envelope .env-hint::before { display: none; }
+#envelope .env-hint::before { display: none; }
 .env-stage { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: center; gap: clamp(18px, 4vh, 30px); text-align: center; max-width: 100%; }
+/* A velvet-and-gold prologue, with one gentle light sweep rather than a looping shimmer. */
 .env-to {
-  margin: 0; padding: 12px 18px; border-radius: 18px;
-  font-family: 'Poppins', sans-serif; font-weight: 600; font-size: clamp(.7rem, 2.3vw, .85rem);
-  letter-spacing: .22em; text-transform: uppercase; color: var(--env-ink); text-shadow: none;
-  background: rgba(255, 248, 240, .97);
-  border: 1px solid rgba(179, 139, 76, .25);
-  box-shadow: 0 8px 24px rgba(87, 60, 66, .09);
+  position: relative; isolation: isolate; overflow: hidden;
+  max-width: min(100%, 620px); margin: 0;
+  padding: clamp(16px, 2.6vw, 22px) clamp(18px, 4vw, 36px);
+  border: 1px solid #C5A165; border-radius: 24px 24px 36px 36px;
+  font-family: var(--font-body); font-weight: 500; font-size: clamp(.65rem, 2.1vw, .78rem);
+  line-height: 1.6; letter-spacing: .16em; text-transform: uppercase;
+  color: #F6DCA9; text-shadow: 0 1px 2px rgba(45, 12, 28, .4);
+  background: radial-gradient(ellipse at 50% 0%, rgba(239, 203, 131, .12), transparent 65%), linear-gradient(135deg, #542338, #713249 55%, #4B2134);
+  box-shadow: 0 16px 38px -22px rgba(62, 19, 39, .6), inset 0 1px rgba(255, 239, 205, .18);
 }
-.env-intro-line { display: block; }
-#envelope.show .env-intro-line { animation: greetingReveal 1.2s .5s ease-out both; }
-#envelope.show .env-to b { animation: greetingReveal 1.15s .8s cubic-bezier(.2, .7, .3, 1) both; }
-@keyframes greetingReveal {
-  from { opacity: 0; transform: translateY(14px); }
+#envelope .env-to::before {
+  content: ''; display: block; position: absolute; inset: 6px; z-index: -1;
+  border: 1px solid rgba(239, 203, 131, .35); border-radius: 19px 19px 30px 30px;
+  background: none; pointer-events: none;
+}
+.env-to::after {
+  content: ''; position: absolute; inset: 0; z-index: -1; opacity: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255, 236, 190, .15) 50%, transparent 75%);
+  transform: translateX(-110%); pointer-events: none;
+}
+.env-greeting-ornament { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 0 auto 8px; color: #EFCB83; font: 400 1.4rem/1 Georgia, serif; letter-spacing: 0; }
+.env-greeting-ornament span:first-child { transform: rotate(-12deg); }
+.env-greeting-ornament span:last-child { transform: rotate(12deg); }
+.env-greeting-ornament i { width: 32px; height: 1px; background: linear-gradient(90deg, transparent, #EFCB83, transparent); }
+.env-intro-line { display: block; text-wrap: balance; }
+.env-to b {
+  display: block; margin-top: 8px;
+  font-family: var(--font-script); font-style: normal; font-weight: 400;
+  font-size: clamp(2.05rem, 6.4vw, 3.2rem); letter-spacing: .015em; text-transform: none; line-height: 1.2;
+  color: #FFF5DF; text-wrap: balance;
+}
+#envelope.show .env-to { animation: greetingCardReveal .9s .15s cubic-bezier(.2, .7, .3, 1) both; }
+#envelope.show .env-greeting-ornament { animation: greetingOrnamentReveal .8s .3s ease-out both; }
+#envelope.show .env-intro-line { animation: greetingReveal 1.2s .5s cubic-bezier(.2, .7, .3, 1) both; }
+#envelope.show .env-to b { animation: greetingTitleReveal 1.35s .8s cubic-bezier(.2, .7, .3, 1) both; }
+#envelope.show .env-to::after { animation: greetingLightSweep 1.5s 1.15s ease-in-out both; }
+@keyframes greetingCardReveal {
+  from { opacity: 0; transform: translateY(12px) scale(.97); }
   to { opacity: 1; transform: none; }
 }
-.env-to b {
-  display: block; margin-top: 6px;
-  font-family: 'Playfair Display', var(--font-serif); font-style: italic; font-weight: 600;
-  font-size: clamp(1.9rem, 6.4vw, 2.9rem); letter-spacing: .01em; text-transform: none; line-height: 1.1;
-  color: var(--env-ink);
+@keyframes greetingOrnamentReveal {
+  from { opacity: 0; transform: scale(.75); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes greetingReveal {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes greetingTitleReveal {
+  from { opacity: 0; transform: translateY(12px) scale(.96); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes greetingLightSweep {
+  0% { opacity: 0; transform: translateX(-110%); }
+  35%, 65% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(110%); }
 }
 .env {
   position: relative;
@@ -250,6 +288,7 @@
   .invitation-petals, .envelope-poppers, .invite-magic { display: none; }
   .invite-magic, .magic-glow, .magic-orbit, .magic-trace { animation: none; }
   #envelope.opening::before { animation: none; }
-  #envelope.show .env-intro-line, #envelope.show .env-to b,
+  #envelope.show .env-to, #envelope.show .env-greeting-ornament,
+  #envelope.show .env-intro-line, #envelope.show .env-to b, #envelope.show .env-to::after,
   #envelope.opening .env-stage, #invite.entering .invite-card { animation: none; }
 }

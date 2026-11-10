@@ -77,25 +77,56 @@
   @media (max-width: 540px) {
     .inv-name-arch { margin-top: 24px; }
   }
-  .inv-names { font-family: var(--font-script); font-weight: 400; font-size: clamp(2.5rem, 10vw, 4.8rem); line-height: 1.05; margin: .25em 0; color: var(--ink); }
+  .inv-names { font-family: var(--font-script); font-weight: 400; font-size: clamp(2.75rem, 11vw, 5.25rem); line-height: 1.05; margin: .25em 0; color: var(--ink); }
   /* Programmatic heading focus announces the invite without a blue rectangular ring.
      Interactive controls retain their visible keyboard focus indicators. */
   #inviteTitle:focus { outline: none; }
   .inv-names span { display: block; font-size: .45em; color: #B08A48; }
   .inv-names span::before, .inv-names span::after { content: ''; display: inline-block; width: clamp(24px, 7vw, 46px); height: 1px; margin: 0 .5em; vertical-align: middle; background: linear-gradient(90deg, transparent, #C8A76B); }
   .inv-names span::after { transform: scaleX(-1); }
-  .inv-families { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; margin: 24px auto 28px; max-width: 440px; }
-  .inv-families dt { margin-bottom: 8px; font-size: .62rem; letter-spacing: .13em; text-transform: uppercase; color: #A9566A; font-weight: 600; }
-  .inv-families dd { margin: 0; font-family: var(--font-elegant); font-size: 1.15rem; line-height: 1.5; color: var(--ink); text-wrap: balance; }
-  @media (max-width: 540px) { .inv-families { grid-template-columns: 1fr; gap: 18px; } }
+  /* Heirloom-style family panels: expressive serif names, not delicate body text. */
+  .inv-families { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 26px auto 30px; max-width: 460px; }
+  .inv-families > div { min-width: 0; padding: 16px 12px; border-block: 1px solid #D8B783; border-radius: 14px; background: linear-gradient(145deg, #FFF9F1, #F9E9EC); }
+  .inv-families dt { margin-bottom: 10px; font-size: .65rem; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; color: #87505B; font-weight: 600; }
+  .inv-families dd { margin: 0; font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(1.125rem, 2.4vw, 1.25rem); line-height: 1.7; color: #633847; text-wrap: balance; overflow-wrap: anywhere; }
+  @media (max-width: 540px) { .inv-families { grid-template-columns: 1fr; gap: 16px; } }
   .inv-text { font-family: var(--font-serif); font-style: italic; color: var(--ink-soft); max-width: 420px; margin: 0 auto; }
   .gold-rule { position: relative; width: 160px; height: 1px; margin: 26px auto; background: linear-gradient(90deg, transparent, #D9A3AE, transparent); }
   .gold-rule::after { content: '\2766'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 0 8px; background: var(--cream); color: #B3261E; }
-  .save-date { margin: 0 0 26px; padding: 22px 16px; border-radius: 18px; background: rgba(255, 255, 255, .72); border: 1.5px solid rgba(217, 163, 174, .55); }
-  .save-date h2 { font-family: var(--font-serif); margin: 0 0 12px; font-size: 1.35rem; letter-spacing: .06em; }
-  .sd-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .sd-grid small { display: block; font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: #A9566A; font-weight: 600; }
-  .sd-grid strong { font-family: var(--font-serif); font-weight: 500; font-size: 1.02rem; }
+  /* Blush-and-champagne keepsake with a fine gilded inner frame. */
+  .save-date {
+    position: relative; isolation: isolate;
+    margin: 0 0 28px; padding: 28px clamp(12px, 3vw, 22px) 24px;
+    border: 1px solid #C6A161; border-radius: 24px;
+    background: radial-gradient(ellipse at 12% 0%, #F7D9E3, transparent 65%), linear-gradient(145deg, #FFF3DF, #F9E5E6);
+    box-shadow: 0 14px 30px -22px rgba(112, 43, 65, .5), inset 0 0 0 3px rgba(255, 250, 240, .75);
+  }
+  .save-date::before { content: ''; position: absolute; inset: 7px; border: 1px solid rgba(164, 119, 48, .4); border-radius: 17px; pointer-events: none; }
+  .save-date h2 { margin: 0 0 20px; font: 400 clamp(2.15rem, 6vw, 2.8rem)/1.25 var(--font-script); color: #7B2948; text-shadow: 0 1px #FFF8ED; text-wrap: balance; }
+  .save-date h2::after { content: ''; display: block; width: 76px; height: 2px; margin: 10px auto 0; background: linear-gradient(90deg, transparent, #A47730, transparent); }
+  .sd-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .sd-grid > div { min-width: 0; padding: 12px 6px; border: 1px solid #E1C6B0; border-radius: 12px; background: rgba(255, 250, 242, .85); }
+  .sd-grid small { display: block; margin-bottom: 5px; font-size: .63rem; letter-spacing: .15em; text-transform: uppercase; color: #81505B; font-weight: 600; }
+  .sd-grid strong { display: block; font-family: var(--font-serif); font-weight: 500; font-size: 1rem; line-height: 1.55; color: #5C3040; text-wrap: balance; overflow-wrap: anywhere; }
+  .save-date .inv-tagline { margin-top: 20px; color: #854337; }
+  .venue-map {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    width: fit-content; max-width: 100%; min-height: 52px; margin: 16px auto 0; padding: 12px 16px;
+    border: 1.5px solid #C6A161; border-radius: 18px;
+    background: linear-gradient(135deg, #FFF5DF, #F9E5EC); color: #7B2948;
+    font-family: var(--font-serif); font-size: clamp(.95rem, 2.6vw, 1.05rem); font-weight: 500; line-height: 1.5;
+    text-decoration: none; text-wrap: balance;
+    box-shadow: 0 6px 16px -12px rgba(112, 43, 65, .45), inset 0 0 0 3px rgba(255, 250, 240, .7);
+  }
+  .venue-map > span { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border: 1px solid #D8B783; border-radius: 50%; background: #FFF8ED; font-size: 1.1rem; }
+  .venue-map:hover { border-color: #A67B39; background: linear-gradient(135deg, #FFF0D2, #F4DCE4); }
+  .venue-map:focus-visible { outline: 3px solid #7B2948; outline-offset: 3px; }
+  .save-date .cd-unit { border-color: #D7B57E; border-radius: 12px; background: #FFFAF2; box-shadow: 0 5px 14px -10px rgba(112, 43, 65, .4); }
+  .save-date .cd-unit b { color: #7B2948; }
+  .save-date .cd-unit span { color: #754750; }
+  @media (max-width: 360px) {
+    .save-date .countdown.small { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  }
   .btn-rsvp { animation: glow 2.4s ease-in-out infinite; padding: 15px 38px; font-size: 1.05rem; }
   .events { text-align: left; margin-top: 30px; }
   .events > h2 { text-align: center; font-family: var(--font-serif); font-size: 1.35rem; margin: 0 0 14px; }

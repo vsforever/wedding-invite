@@ -38,7 +38,11 @@
 <body>
   <section id="envelope" class="show" role="dialog" aria-modal="true" aria-label="Wedding invitation envelope">
     <div class="env-stage" id="envStage">
-      <p class="env-to"><span class="env-intro-line">Two hearts, one celebration</span><b>Our Forever Begins</b></p>
+      <p class="env-to">
+        <span class="env-greeting-ornament" aria-hidden="true"><span>♡</span><i></i><span>♡</span></span>
+        <span class="env-intro-line">Two hearts, one celebration</span>
+        <b>Our Forever Begins</b>
+      </p>
       <div class="env" id="envBody">
         <div class="env-back"></div>
         <div class="env-pocket"></div>
@@ -76,7 +80,7 @@
           <dd>Smt. Anjana Jha<br>&amp; Shri Shrawan Kumar Jha</dd>
         </div>
       </dl>
-      <p class="inv-text">Seven sacred vows, two families, one joyous celebration — we would love for you to be there as we begin our new life together.</p>
+      <p class="inv-text">Kindly grace our wedding with your presence and blessings.</p>
       <div class="gold-rule"></div>
       <div class="save-date">
         <h2>Save the Date</h2>
@@ -86,6 +90,7 @@
           <div><small>Venue</small><strong data-wedding-address>Sports Club, Jabalpur</strong></div>
         </div>
         <p class="inv-tagline">The Countdown to Forever</p>
+        <a class="venue-map" href="https://maps.app.goo.gl/c5hmLYGiaqn7wRhT6" target="_blank" rel="noopener noreferrer" aria-label="Find Us at Sports Club of Jabalpur, opens Google Maps in a new tab"><span aria-hidden="true">📍</span> Find Us at Sports Club of Jabalpur</a>
         <div class="countdown small" data-countdown role="timer" aria-label="Time until the wedding"></div>
       </div>
       <div class="events">
@@ -156,46 +161,35 @@
     <section id="rsvp" aria-labelledby="rsvpTitle" aria-describedby="rsvpCaption">
       <header class="rsvp-heading">
         <span class="rsvp-ornament" aria-hidden="true">✧ ── ♡ ── ✧</span>
-        <p class="rsvp-eyebrow">The celebration is sweeter with you</p>
-        <h2 id="rsvpTitle">Celebrate With Us</h2>
-        <p id="rsvpCaption">Your presence would mean the world to us. Kindly let us know if you’ll be joining our wedding festivities, so we can save a place for you.</p>
+        <p class="rsvp-eyebrow">Words we’ll treasure forever</p>
+        <h2 id="rsvpTitle">Wishes &amp; Blessings</h2>
+        <p id="rsvpCaption">Share a wish, a blessing, or a little advice for our journey together. Your words will be a keepsake we’ll treasure.</p>
       </header>
       <div class="rsvp-card">
         <div data-rsvp-step="form">
           <div class="rsvp-emoji" aria-hidden="true">💌</div>
-          <h3>A place for you, a memory for us</h3>
-          <p class="rsvp-intro">We can’t wait to celebrate, laugh, and make beautiful memories with you.</p>
+          <h3>A little love for our new beginning</h3>
+          <p class="rsvp-intro">Your blessings are our most precious gift.</p>
           <p class="rsvp-status" id="rsvpStatus" role="status"></p>
           <form class="rsvp-form" id="rsvpForm" novalidate>
-            <label for="rsvpName">May we have your name?
-              <input type="text" name="name" id="rsvpName" autocomplete="name" maxlength="80" required placeholder="Your full name">
-            </label>
-            <label for="rsvpGuests">How many of you will be celebrating with us?
-              <small id="rsvpGuestsHint">Please include yourself in your party of 1–20 guests.</small>
-              <span class="rsvp-count">
-                <button class="rsvp-step" type="button" data-step="-1" aria-label="One fewer guest">−</button>
-                <input type="number" name="guests" id="rsvpGuests" inputmode="numeric" min="1" max="20" step="1" value="1" required aria-describedby="rsvpGuestsHint">
-                <button class="rsvp-step" type="button" data-step="1" aria-label="One more guest">+</button>
-              </span>
-            </label>
-            <label for="rsvpWishes">A little love for our new beginning <span class="rsvp-optional">(optional)</span>
-              <small id="rsvpWishesHint">Share a wish, a blessing, or a little advice for our journey together.</small>
-              <textarea name="wishes" id="rsvpWishes" rows="4" maxlength="2000" aria-describedby="rsvpWishesHint" placeholder="Your words will be a keepsake we’ll treasure…"></textarea>
+            <label for="rsvpWishes">Your wishes &amp; blessings
+              <small id="rsvpWishesHint">Leave a little love, wisdom, or a happy thought for us.</small>
+              <textarea name="wishes" id="rsvpWishes" rows="4" maxlength="2000" required aria-describedby="rsvpWishesHint" placeholder="Your words will be a keepsake we’ll treasure…"></textarea>
             </label>
             <label class="rsvp-hp" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
             <p class="rsvp-error" id="rsvpError" role="alert"></p>
             <div class="rsvp-actions">
-              <button class="btn-soft warm" id="rsvpSubmit" type="submit">Count us in 💗</button>
+              <button class="btn-soft warm" id="rsvpSubmit" type="submit">Send your blessings 💗</button>
             </div>
           </form>
         </div>
         <div data-rsvp-step="thanks" hidden>
-          <div class="rsvp-emoji" aria-hidden="true">🥂</div>
-          <h3 id="rsvpThanksTitle" tabindex="-1">We’re so glad you’ll be there!</h3>
+          <div class="rsvp-emoji" aria-hidden="true">💛</div>
+          <h3 id="rsvpThanksTitle" tabindex="-1">Your words mean the world to us!</h3>
           <p id="rsvpThanks"></p>
-          <p>Thank you for being part of our story. Let the festivities begin!</p>
+          <p>Thank you for filling our new beginning with so much love.</p>
           <div class="rsvp-actions">
-            <button class="btn-soft warm" id="rsvpAnother" type="button">Send another response</button>
+            <button class="btn-soft warm" id="rsvpAnother" type="button">Leave another blessing</button>
           </div>
         </div>
       </div>
