@@ -24,7 +24,6 @@
   <link rel="stylesheet" href="styles/base.css" />
   <link rel="stylesheet" href="styles/invitation.css" />
   <link rel="stylesheet" href="styles/envelope.css" />
-  <link rel="stylesheet" href="styles/rsvp.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="stylesheet" href="styles/memories.css" />
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
@@ -32,7 +31,6 @@
   <script src="scripts/invitation.js" defer></script>
   <script src="scripts/effects.js" defer></script>
   <script src="scripts/audio.js" defer></script>
-  <script src="scripts/rsvp.js" defer></script>
   <script src="scripts/memories.js" defer></script>
 </head>
 <body>
@@ -157,43 +155,6 @@
       </div>
       <p class="memories-signoff">The best is yet to come <span aria-hidden="true">♡</span></p>
     </section>
-
-    <section id="rsvp" aria-labelledby="rsvpTitle" aria-describedby="rsvpCaption">
-      <header class="rsvp-heading">
-        <span class="rsvp-ornament" aria-hidden="true">✧ ── ♡ ── ✧</span>
-        <p class="rsvp-eyebrow">Words we’ll treasure forever</p>
-        <h2 id="rsvpTitle">Wishes &amp; Blessings</h2>
-        <p id="rsvpCaption">Share a wish, a blessing, or a little advice for our journey together. Your words will be a keepsake we’ll treasure.</p>
-      </header>
-      <div class="rsvp-card">
-        <div data-rsvp-step="form">
-          <div class="rsvp-emoji" aria-hidden="true">💌</div>
-          <h3>A little love for our new beginning</h3>
-          <p class="rsvp-intro">Your blessings are our most precious gift.</p>
-          <p class="rsvp-status" id="rsvpStatus" role="status"></p>
-          <form class="rsvp-form" id="rsvpForm" novalidate>
-            <label for="rsvpWishes">Your wishes &amp; blessings
-              <small id="rsvpWishesHint">Leave a little love, wisdom, or a happy thought for us.</small>
-              <textarea name="wishes" id="rsvpWishes" rows="4" maxlength="2000" required aria-describedby="rsvpWishesHint" placeholder="Your words will be a keepsake we’ll treasure…"></textarea>
-            </label>
-            <label class="rsvp-hp" aria-hidden="true">Website <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
-            <p class="rsvp-error" id="rsvpError" role="alert"></p>
-            <div class="rsvp-actions">
-              <button class="btn-soft warm" id="rsvpSubmit" type="submit">Send your blessings 💗</button>
-            </div>
-          </form>
-        </div>
-        <div data-rsvp-step="thanks" hidden>
-          <div class="rsvp-emoji" aria-hidden="true">💛</div>
-          <h3 id="rsvpThanksTitle" tabindex="-1">Your words mean the world to us!</h3>
-          <p id="rsvpThanks"></p>
-          <p>Thank you for filling our new beginning with so much love.</p>
-          <div class="rsvp-actions">
-            <button class="btn-soft warm" id="rsvpAnother" type="button">Leave another blessing</button>
-          </div>
-        </div>
-      </div>
-    </section>
   </main>
   <div class="invitation-petals" id="invitationPetals" aria-hidden="true" hidden></div>
   <div class="invite-magic" id="inviteMagic" aria-hidden="true" hidden>
@@ -211,6 +172,6 @@
   </div>
   <div class="envelope-poppers" id="envelopePoppers" aria-hidden="true"></div>
   <button id="mute" type="button" aria-label="Play music" aria-pressed="false">🔇</button>
-  <noscript><p class="no-script">Please enable JavaScript to open the invitation, view the schedule and RSVP.</p></noscript>
+  <noscript><p class="no-script">Please enable JavaScript to open the invitation and view the schedule.</p></noscript>
 </body>
 </html>

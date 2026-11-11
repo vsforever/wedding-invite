@@ -2,7 +2,7 @@
  * Wishes & blessings backend for the Vivek & Srishti invite (Google Apps Script web app).
  *
  * Messages are appended to the existing "RSVPs" tab, then the sheet is emailed as Excel.
- * Keep the legacy Name/Guests columns and earlier responses; new messages leave them blank.
+ * Keep earlier responses and the legacy columns; new wishes save Name and leave Guests blank.
  *
  * Setup (either way works):
  *   A) Google Sheet → Extensions → Apps Script → paste this file (leave SPREADSHEET_ID empty).
@@ -11,12 +11,13 @@
  * Then Deploy → New deployment → type "Web app", Execute as "Me", Who has access "Anyone"
  * → copy the /exec URL into RSVP_ENDPOINT in scripts/config.js.
  * For an existing deployment, Deploy → Manage deployments → Edit → New version → Deploy.
- * Redeploy before publishing the wishes-only form; older versions require name and guest count.
+ * Redeploy with the name-and-wishes form; older versions may reject it or omit the sender's name.
  */
 const SPREADSHEET_ID = ''; // only needed for setup B (standalone script)
 const NOTIFY_EMAIL = 'vivekindia136@gmail.com';
 const SHEET_NAME = 'RSVPs';
 const HEADERS = ['Submitted at', 'Name', 'Guests', 'Wishes & blessings'];
+const MAX_NAME_LENGTH = 120;
 const MAX_WISHES_LENGTH = 2000;
 
 function doPost(e) {
@@ -28,15 +29,18 @@ function doPost(e) {
     // Honeypot: real guests never see or fill the "website" field.
     if (params.website) return json_({ ok: true });
 
+    const name = String(params.name || '').trim();
     const wishes = String(params.wishes || '').trim();
+    if (!name) return json_({ ok: false, error: 'name_required' });
+    if (name.length > MAX_NAME_LENGTH) return json_({ ok: false, error: 'name_too_long' });
     if (!wishes) return json_({ ok: false, error: 'wishes_required' });
     if (wishes.length > MAX_WISHES_LENGTH) return json_({ ok: false, error: 'wishes_too_long' });
 
     const sheet = getSheet_();
-    sheet.appendRow([new Date(), '', '', escapeFormula_(wishes)]);
+    sheet.appendRow([new Date(), escapeFormula_(name), '', escapeFormula_(wishes)]);
     SpreadsheetApp.flush();
 
-    emailWorkbook_(sheet, wishes);
+    emailWorkbook_(sheet, name, wishes);
     return json_({ ok: true });
   } catch (err) {
     console.error(err);
@@ -72,7 +76,7 @@ function escapeFormula_(value) {
   return /^[=+\-@]/.test(value) ? "'" + value : value;
 }
 
-function emailWorkbook_(sheet, wishes) {
+function emailWorkbook_(sheet, name, wishes) {
   const ss = sheet.getParent();
   const url = 'https://docs.google.com/spreadsheets/d/' + ss.getId() + '/export?format=xlsx';
   const xlsx = UrlFetchApp.fetch(url, {
@@ -86,7 +90,7 @@ function emailWorkbook_(sheet, wishes) {
     to: NOTIFY_EMAIL,
     subject: 'A little love for our new beginning — new wishes & blessings',
     htmlBody:
-      '<p>Someone shared a little love for your new beginning.</p>' +
+      '<p><b>From:</b> ' + htmlEscape_(name) + '</p>' +
       '<p><b>Wishes &amp; blessings:</b><br>' + htmlEscape_(wishes).replace(/\r?\n/g, '<br>') + '</p>' +
       '<p>The full collection, including earlier responses, is attached as an Excel sheet. Live sheet: <a href="' + sheetLink + '">open in Google Sheets</a>.</p>',
     attachments: [xlsx]

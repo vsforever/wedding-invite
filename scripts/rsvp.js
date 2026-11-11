@@ -1,6 +1,8 @@
 'use strict';
 
+const rsvp = $('#rsvp');
 const rsvpForm = $('#rsvpForm');
+const rsvpName = $('#rsvpName');
 const rsvpWishes = $('#rsvpWishes');
 const rsvpError = $('#rsvpError');
 const RSVP_SENT_KEY = 'wedding-invitation-wishes-sent';
@@ -19,10 +21,20 @@ try { if (localStorage.getItem(RSVP_SENT_KEY)) markRsvpSent(); } catch (_) { /* 
 rsvpForm.addEventListener('submit', async (event) => {
   event.preventDefault();
   if (rsvpPending) return;
+  const name = rsvpName.value.trim();
   const wishes = rsvpWishes.value.trim();
   rsvpError.textContent = '';
+  rsvpName.removeAttribute('aria-invalid');
+  rsvpWishes.removeAttribute('aria-invalid');
+  if (!name || name.length > 120) {
+    rsvpError.textContent = name ? 'Please keep your name within 120 characters.' : 'Please enter your name so we know who to thank.';
+    rsvpName.setAttribute('aria-invalid', 'true');
+    rsvpName.focus();
+    return;
+  }
   if (!wishes || wishes.length > 2000) {
     rsvpError.textContent = wishes ? 'Please keep your lovely message within 2,000 characters.' : 'Please write a wish, a blessing, or a little advice before sending.';
+    rsvpWishes.setAttribute('aria-invalid', 'true');
     rsvpWishes.focus();
     return;
   }
@@ -39,7 +51,7 @@ rsvpForm.addEventListener('submit', async (event) => {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 20000);
   try {
-    const body = new URLSearchParams({ wishes, website: rsvpForm.elements.website.value });
+    const body = new URLSearchParams({ name, wishes, website: rsvpForm.elements.website.value });
     const response = await fetch(RSVP_ENDPOINT, { method: 'POST', body, signal: controller.signal });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
     const data = await response.json();
@@ -64,6 +76,8 @@ rsvpForm.addEventListener('submit', async (event) => {
 $('#rsvpAnother').addEventListener('click', () => {
   rsvpForm.reset();
   rsvpError.textContent = '';
+  rsvpName.removeAttribute('aria-invalid');
+  rsvpWishes.removeAttribute('aria-invalid');
   showRsvpStep('form');
-  rsvpWishes.focus();
+  rsvpName.focus();
 });

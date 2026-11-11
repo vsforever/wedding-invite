@@ -4,7 +4,6 @@ const $ = (selector) => document.querySelector(selector);
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const invite = $('#invite');
 const envelope = $('#envelope');
-const rsvp = $('#rsvp');
 const envelopeMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const weddingDate = new Date(WEDDING.date);
 const spiralDuration = 1800;
@@ -177,7 +176,7 @@ invite.addEventListener('click', (event) => { if (event.target === invite) openE
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') {
     if (envelope.classList.contains('show')) openInvite();
-    else if (!event.target.closest('#rsvp')) openEnvelope();
+    else openEnvelope();
   }
   if (event.key !== 'Tab') return;
   const modal = envelope.classList.contains('show') ? envelope : null;
