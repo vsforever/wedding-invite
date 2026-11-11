@@ -93,22 +93,24 @@
   .inv-text { font-family: var(--font-serif); font-style: italic; color: var(--ink-soft); max-width: 420px; margin: 0 auto; }
   .gold-rule { position: relative; width: 160px; height: 1px; margin: 26px auto; background: linear-gradient(90deg, transparent, #D9A3AE, transparent); }
   .gold-rule::after { content: '\2766'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); padding: 0 8px; background: var(--cream); color: #B3261E; }
-  /* Blush-and-champagne keepsake with a fine gilded inner frame. */
+  /* Rose, saffron and sage keepsake with jewel-toned countdown tiles. */
   .save-date {
     position: relative; isolation: isolate;
     margin: 0 0 28px; padding: 28px clamp(12px, 3vw, 22px) 24px;
-    border: 1px solid #C6A161; border-radius: 24px;
-    background: radial-gradient(ellipse at 12% 0%, #F7D9E3, transparent 65%), linear-gradient(145deg, #FFF3DF, #F9E5E6);
-    box-shadow: 0 14px 30px -22px rgba(112, 43, 65, .5), inset 0 0 0 3px rgba(255, 250, 240, .75);
+    border: 1px solid #BA8A43; border-radius: 24px;
+    background: radial-gradient(ellipse at 0% 0%, #F2B9CF, transparent 65%), radial-gradient(ellipse at 100% 100%, #D2E4D5, transparent 60%), linear-gradient(145deg, #FFE4AE, #FBE0D8);
+    box-shadow: 0 14px 30px -22px rgba(112, 43, 65, .65), inset 0 0 0 3px rgba(255, 250, 240, .75);
   }
-  .save-date::before { content: ''; position: absolute; inset: 7px; border: 1px solid rgba(164, 119, 48, .4); border-radius: 17px; pointer-events: none; }
+  .save-date::before { content: ''; position: absolute; inset: 7px; border: 1px solid rgba(164, 119, 48, .5); border-radius: 17px; pointer-events: none; }
   .save-date h2 { margin: 0 0 20px; font: 400 clamp(2.15rem, 6vw, 2.8rem)/1.25 var(--font-script); color: #7B2948; text-shadow: 0 1px #FFF8ED; text-wrap: balance; }
   .save-date h2::after { content: ''; display: block; width: 76px; height: 2px; margin: 10px auto 0; background: linear-gradient(90deg, transparent, #A47730, transparent); }
   .sd-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
-  .sd-grid > div { min-width: 0; padding: 12px 6px; border: 1px solid #E1C6B0; border-radius: 12px; background: rgba(255, 250, 242, .85); }
-  .sd-grid small { display: block; margin-bottom: 5px; font-size: .63rem; letter-spacing: .15em; text-transform: uppercase; color: #81505B; font-weight: 600; }
-  .sd-grid strong { display: block; font-family: var(--font-serif); font-weight: 500; font-size: 1rem; line-height: 1.55; color: #5C3040; text-wrap: balance; overflow-wrap: anywhere; }
-  .save-date .inv-tagline { margin-top: 20px; color: #854337; }
+  .sd-grid > div { min-width: 0; padding: 12px 6px; border: 1px solid #CB8A9D; border-top-width: 3px; border-radius: 12px; background: linear-gradient(145deg, #FBD6E2, #F1BDCD); color: #70283F; box-shadow: 0 5px 12px -9px rgba(83, 39, 56, .45); }
+  .sd-grid > div:nth-child(2) { border-color: #C59440; background: linear-gradient(145deg, #FFE9AF, #F4D18B); color: #674014; }
+  .sd-grid > div:nth-child(3) { border-color: #78A18D; background: linear-gradient(145deg, #D9ECDE, #BBDAC8); color: #28523F; }
+  .sd-grid small { display: block; margin-bottom: 5px; font-size: .63rem; letter-spacing: .15em; text-transform: uppercase; color: inherit; font-weight: 600; }
+  .sd-grid strong { display: block; font-family: var(--font-serif); font-weight: 500; font-size: 1rem; line-height: 1.55; color: inherit; text-wrap: balance; overflow-wrap: anywhere; }
+  .save-date .inv-tagline { margin-top: 20px; color: #772747; }
   .venue-map {
     display: flex; align-items: center; justify-content: center; gap: 10px;
     width: fit-content; max-width: 100%; min-height: 52px; margin: 16px auto 0; padding: 12px 16px;
@@ -121,9 +123,12 @@
   .venue-map > span { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border: 1px solid #D8B783; border-radius: 50%; background: #FFF8ED; font-size: 1.1rem; }
   .venue-map:hover { border-color: #A67B39; background: linear-gradient(135deg, #FFF0D2, #F4DCE4); }
   .venue-map:focus-visible { outline: 3px solid #7B2948; outline-offset: 3px; }
-  .save-date .cd-unit { border-color: #D7B57E; border-radius: 12px; background: #FFFAF2; box-shadow: 0 5px 14px -10px rgba(112, 43, 65, .4); }
-  .save-date .cd-unit b { color: #7B2948; }
-  .save-date .cd-unit span { color: #754750; }
+  .save-date .cd-unit { --countdown-start: #8E3656; --countdown-end: #642039; border-color: #CBA36A; border-radius: 12px; background: linear-gradient(145deg, var(--countdown-start), var(--countdown-end)); box-shadow: 0 7px 16px -10px rgba(70, 29, 48, .65), inset 0 1px rgba(255, 244, 219, .25); }
+  .save-date .cd-unit:nth-child(2) { --countdown-start: #755184; --countdown-end: #4F315F; }
+  .save-date .cd-unit:nth-child(3) { --countdown-start: #32685B; --countdown-end: #204A40; }
+  .save-date .cd-unit:nth-child(4) { --countdown-start: #926222; --countdown-end: #694311; }
+  .save-date .cd-unit b { color: #FFF4DB; text-shadow: 0 1px 2px rgba(39, 14, 26, .3); }
+  .save-date .cd-unit span { color: #FFF4DB; }
   @media (max-width: 360px) {
     .save-date .countdown.small { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
   }
