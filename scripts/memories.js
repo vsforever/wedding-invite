@@ -14,6 +14,15 @@
   caption.setAttribute('role', 'status');
   caption.setAttribute('aria-live', 'polite');
   caption.setAttribute('aria-atomic', 'true');
+  // Overlaid captions reserve only the tallest natural text height at each width.
+  const captions = photos.map((photo) => {
+    const panel = document.createElement('div');
+    panel.className = 'memory-caption-content';
+    panel.setAttribute('aria-hidden', 'true');
+    panel.append(...[...photo.querySelector('figcaption').children].map((node) => node.cloneNode(true)));
+    return panel;
+  });
+  caption.append(...captions);
   album.insertBefore(caption, section.querySelector('.memories-footer'));
   const status = section.querySelector('.memories-status');
   let active = 0;
@@ -48,7 +57,10 @@
       else button.removeAttribute('aria-current');
     });
     current.textContent = String(index + 1).padStart(2, '0');
-    caption.replaceChildren(...[...photos[index].querySelector('figcaption').children].map((node) => node.cloneNode(true)));
+    captions.forEach((panel, position) => {
+      panel.classList.toggle('is-active', position === index);
+      panel.setAttribute('aria-hidden', String(position !== index));
+    });
     status.hidden = true;
   }
 

@@ -84,11 +84,20 @@
   .inv-names span { display: block; font-size: .45em; color: #B08A48; }
   .inv-names span::before, .inv-names span::after { content: ''; display: inline-block; width: clamp(24px, 7vw, 46px); height: 1px; margin: 0 .5em; vertical-align: middle; background: linear-gradient(90deg, transparent, #C8A76B); }
   .inv-names span::after { transform: scaleX(-1); }
-  /* Heirloom-style family panels: expressive serif names, not delicate body text. */
+  /* Rose and sage family keepsakes, with readable serif names and gilded details. */
   .inv-families { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 26px auto 30px; max-width: 460px; }
-  .inv-families > div { min-width: 0; padding: 16px 12px; border-block: 1px solid #D8B783; border-radius: 14px; background: linear-gradient(145deg, #FFF9F1, #F9E9EC); }
-  .inv-families dt { margin-bottom: 10px; font-size: .65rem; line-height: 1.6; letter-spacing: .12em; text-transform: uppercase; color: #87505B; font-weight: 600; }
-  .inv-families dd { margin: 0; font-family: var(--font-serif); font-style: italic; font-weight: 500; font-size: clamp(1.125rem, 2.4vw, 1.25rem); line-height: 1.7; color: #633847; text-wrap: balance; overflow-wrap: anywhere; }
+  .inv-families > div {
+    --family-ink: #742B49; --family-light: #FBE5EF; --family-deep: #EDC4D6; --family-border: #C58C9F;
+    position: relative; min-width: 0; padding: 20px 12px 18px;
+    border: 1px solid var(--family-border); border-radius: 18px;
+    background: radial-gradient(ellipse at 0% 0%, rgba(255, 232, 173, .65), transparent 65%), linear-gradient(145deg, var(--family-light), var(--family-deep));
+    box-shadow: 0 9px 20px -15px rgba(87, 37, 54, .55), inset 0 0 0 3px rgba(255, 248, 236, .6);
+  }
+  .inv-families .family--sage { --family-ink: #285548; --family-light: #E6F1E5; --family-deep: #C2DBCE; --family-border: #7FA591; }
+  .inv-families > div::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(255, 250, 234, .8); border-radius: 12px; pointer-events: none; }
+  .inv-families dt { width: fit-content; max-width: 100%; margin: 0 auto 12px; padding: 5px 10px; border: 1px solid rgba(166, 123, 57, .3); border-radius: 999px; background: rgba(255, 250, 240, .7); font-size: .7rem; line-height: 1.6; letter-spacing: .1em; text-transform: uppercase; color: var(--family-ink); font-weight: 600; text-wrap: balance; }
+  .inv-families dd { margin: 0; font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: clamp(1.125rem, 2.4vw, 1.25rem); line-height: 1.7; color: var(--family-ink); text-wrap: balance; overflow-wrap: anywhere; text-shadow: 0 1px rgba(255, 250, 240, .6); }
+  .inv-families dd::after { content: ''; display: block; width: 64px; height: 2px; margin: 12px auto 0; background: linear-gradient(90deg, transparent, #A67B39, transparent); pointer-events: none; }
   @media (max-width: 540px) { .inv-families { grid-template-columns: 1fr; gap: 16px; } }
   .inv-text { font-family: var(--font-serif); font-style: italic; color: var(--ink-soft); max-width: 420px; margin: 0 auto; }
   .gold-rule { position: relative; width: 160px; height: 1px; margin: 26px auto; background: linear-gradient(90deg, transparent, #D9A3AE, transparent); }
