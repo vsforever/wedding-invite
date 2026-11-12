@@ -22,7 +22,7 @@
 .memory-photo { position: relative; margin: 0; overflow: hidden; border-radius: 13px; background: #EADBD0; }
 .memory-photo img { display: block; width: 100%; height: auto; }
 .memory-photo figcaption, .memories-caption { padding: 20px 14px 8px; text-align: center; color: #69414C; }
-.memory-photo figcaption > span, .memories-caption > span { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: #895B27; }
+.memory-photo figcaption > span, .memory-caption-content > span { font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: #895B27; }
 .memory-photo h3, .memories-caption h3 { margin: 10px 0; font: 500 clamp(1.5rem, 4vw, 2.4rem)/1.2 var(--font-serif); text-wrap: balance; }
 .memory-photo figcaption p, .memories-caption p { margin: 0; font: italic clamp(1rem, 2.6vw, 1.2rem)/1.4 var(--font-elegant); }
 .memory-photo figcaption { background: #FCF4E9; }
@@ -54,7 +54,10 @@
 .memories.is-enhanced .memory-photo::after { content: ''; position: absolute; inset: 0; background: rgba(255, 248, 236, .22); pointer-events: none; }
 .memories.is-enhanced .memory-photo img { position: relative; z-index: 1; height: 100%; object-fit: contain; }
 .memories.is-enhanced .memory-photo figcaption { display: none; }
-.memories.is-enhanced .memories-caption { display: block; min-height: 144px; }
+.memories.is-enhanced .memories-caption { display: grid; padding: 16px 10px 6px; }
+.memory-caption-content { grid-area: 1 / 1; align-self: start; min-width: 0; visibility: hidden; }
+.memory-caption-content, .memory-caption-content * { transition: none; }
+.memory-caption-content.is-active { visibility: visible; }
 .memories.is-enhanced .memory-controls, .memories.is-enhanced .memories-footer { display: flex; }
 .memories.is-enhanced .memories-hint { display: block; }
 
@@ -64,7 +67,6 @@
   .memories-frame { border-radius: 18px; }
   .memories-keepsake { max-width: 110px; font-size: .52rem; }
   .memories.is-enhanced .memory-photos { aspect-ratio: 2 / 3; }
-  .memories.is-enhanced .memories-caption { min-height: 180px; }
   .memories-footer { flex-wrap: wrap; gap: 0 8px; padding-inline: 0; }
   .memory-controls { padding: 6px; }
 }
