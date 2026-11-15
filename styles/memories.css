@@ -31,8 +31,8 @@
 .memories-position { font-size: .78rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .memories-position b { font-weight: 500; }
 .memories-position > span { margin-left: 5px; color: #754C55; }
-.memories-navigation { display: flex; align-items: center; }
-.memories-navigation button { position: relative; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; border-radius: 50%; }
+.memories-navigation { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; min-width: 0; max-width: 100%; }
+.memories-navigation button { position: relative; flex: 0 0 44px; width: 44px; height: 44px; padding: 0; border: 0; background: transparent; border-radius: 50%; }
 .memories-navigation button::after { content: ''; position: absolute; width: 7px; height: 7px; top: 50%; left: 50%; transform: translate(-50%, -50%); border-radius: 50%; background: #B18990; transition: background .2s ease, box-shadow .2s ease; }
 .memories-navigation button[aria-current="true"]::after { background: #9D3E5B; box-shadow: 0 0 0 5px rgba(157, 62, 91, .13); }
 .memories-navigation button:focus-visible, .memory-controls button:focus-visible { outline: 3px solid #9D3E5B; outline-offset: 2px; }
